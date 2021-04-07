@@ -1,5 +1,6 @@
 const { HotModuleReplacementPlugin } = require('webpack');
 const { merge } = require('webpack-merge');
+const formatter = require('eslint-friendly-formatter');
 const { devServer } = require('./config');
 const { getEntries } = require('./tools');
 const { resolve } = require('./tools');
@@ -11,14 +12,14 @@ const devConfig = {
   entry: {
     ...entries,
   },
-    module: {
+  module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.[t|j]s?$/,
         use: {
           loader: 'eslint-loader',
           options: {
-            formatter: require('eslint-friendly-formatter'),
+            formatter,
           },
         },
         include: [resolve('src')],
@@ -26,8 +27,8 @@ const devConfig = {
       },
     ],
   },
-    plugins: [new HotModuleReplacementPlugin(), ...htmlPlugins],
-  devServer: devServer,
+  plugins: [new HotModuleReplacementPlugin(), ...htmlPlugins],
+  devServer,
 };
 
 module.exports = merge(baseConfig, devConfig);

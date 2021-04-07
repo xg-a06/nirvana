@@ -17,18 +17,10 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  settings: {
-    'import/resolver': {
-      alias: {
-        map: [['@', path.resolve('./src')]],
-        extensions: ['.js', '.jsx', '.json'],
-      },
-    },
-  },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     '@typescript-eslint/no-var-requires': 0,
+    'import/no-extraneous-dependencies': 0,
   },
   globals: {},
 };
-

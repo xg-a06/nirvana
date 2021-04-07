@@ -1,6 +1,4 @@
-const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
 const os = require('os');
 const config = require('./config');
@@ -11,10 +9,6 @@ const baseConfig = {
   target: 'web',
   mode: isProd ? 'production' : 'development',
   devtool: isProd ? false : 'source-map',
-  entry: {
-    
-    index: resolve('src/index.ts'),
-  },
   output: {
     filename: '[name].js',
     path: resolve(`dist`),
@@ -22,17 +16,13 @@ const baseConfig = {
     libraryTarget: 'umd',
   },
   resolve: {
-    
     extensions: ['.ts', '.js', '.json'],
-    alias: {
-      '@': resolve('src'),
-    },
   },
   module: {
     rules: [
       {
         enforce: 'pre',
-        
+
         test: /\.[t|j]s?$/,
         // loader: 'babel-loader',
         use: [
@@ -43,7 +33,7 @@ const baseConfig = {
             },
           },
         ],
-        include: [resolve('src'), resolve('demo')],
+        include: [resolve('packages'), resolve('examples')],
       },
       {
         test: /\.worker\.js$/,
@@ -72,7 +62,6 @@ const baseConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         BUILD_ENV: JSON.stringify(process.env.BUILD_ENV),
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         API_PATH: JSON.stringify(config[process.env.BUILD_ENV].API_PATH),
       },
     }),
