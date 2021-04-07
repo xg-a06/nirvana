@@ -2,7 +2,7 @@
   "name": "nirvana",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:xg-a06/mono_repo_demo.git",
+  "repository": "git@github.com:xg-a06/nirvana.git",
   "license": "MIT",
   "private": true,
   "workspaces": [
