@@ -1,6 +1,6 @@
 type Dict = { [key: string]: string };
 
-const getEntries = () => {
+const getLinks = () => {
   let linkStr = '';
   const entries = process.env.ENTRIES as unknown;
   Object.keys(entries as Dict).forEach((k: string) => {
@@ -13,7 +13,7 @@ const getEntries = () => {
   return linkStr;
 };
 
-const list = document.querySelector('#list');
-if (list !== null) {
-  list.innerHTML = getEntries();
+const links = document.querySelector('#list');
+if (links !== null) {
+  links.innerHTML = getLinks();
 }

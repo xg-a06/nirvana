@@ -11,6 +11,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts/webpack.dev.conf.js",
     "prebuild": "rimraf ./dist",
+    "build:types": "tsc --emitDeclarationOnly",
     "build": "lerna run build --stream"
   },
   "devDependencies": {
@@ -36,6 +37,7 @@
     "@babel/preset-env": "^7.13.10",
     "@babel/preset-typescript": "^7.13.0",
     "@babel/runtime-corejs2": "^7.13.10",
+    "@babel/types": "^7.13.14",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "babel-eslint": "^10.0.1",

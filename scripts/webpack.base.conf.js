@@ -1,8 +1,6 @@
 // const threadLoader = require('thread-loader');
 
 const { resolve, isProd } = require('./tools');
-const pkg = require('../package.json');
-
 // threadLoader.warmup(
 //   {
 //     workers: 4,
@@ -15,7 +13,6 @@ const baseConfig = {
   devtool: isProd ? false : 'source-map',
   resolve: {
     extensions: ['.ts', '.js', '.json'],
-    modules: [resolve('node_modules')],
   },
   module: {
     rules: [
