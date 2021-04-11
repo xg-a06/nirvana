@@ -1,37 +1,36 @@
-const webpack = require('webpack');
-const HappyPack = require('happypack');
-const os = require('os');
-const config = require('./config');
+// const threadLoader = require('thread-loader');
+
 const { resolve, isProd } = require('./tools');
 const pkg = require('../package.json');
 
+// threadLoader.warmup(
+//   {
+//     workers: 4,
+//   },
+//   ['babel-loader', '@babel/preset-env', 'less-loader']
+// );
 const baseConfig = {
   target: 'web',
   mode: isProd ? 'production' : 'development',
   devtool: isProd ? false : 'source-map',
-  output: {
-    filename: '[name].js',
-    path: resolve(`dist`),
-    library: pkg.name,
-    libraryTarget: 'umd',
-  },
   resolve: {
     extensions: ['.ts', '.js', '.json'],
+    modules: [resolve('node_modules')],
   },
   module: {
     rules: [
       {
-        enforce: 'pre',
-
         test: /\.[t|j]s?$/,
         // loader: 'babel-loader',
         use: [
           {
-            loader: 'happypack/loader',
+            loader: 'thread-loader',
             options: {
-              id: 'happy-babel',
+              workers: 4,
             },
           },
+          'cache-loader',
+          'babel-loader?cacheDirectory=true',
         ],
         include: [resolve('packages'), resolve('examples')],
       },
@@ -41,31 +40,11 @@ const baseConfig = {
           loader: 'worker-loader',
           options: { inline: true, fallback: false },
         },
-        include: [resolve('src'), resolve('demo')],
+        include: [resolve('packages'), resolve('examples')],
       },
     ],
   },
-  plugins: [
-    new HappyPack({
-      id: 'happy-babel',
-      loaders: [
-        {
-          loader: 'babel-loader',
-          options: {
-            babelrc: true,
-            cacheDirectory: true,
-          },
-        },
-      ],
-      threadPool: HappyPack.ThreadPool({ size: os.cpus().length }),
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        BUILD_ENV: JSON.stringify(process.env.BUILD_ENV),
-        API_PATH: JSON.stringify(config[process.env.BUILD_ENV].API_PATH),
-      },
-    }),
-  ],
+  plugins: [],
 };
 
 module.exports = baseConfig;

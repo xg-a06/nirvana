@@ -6,14 +6,14 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "scripts": {
-    "start": "cross-env NODE_ENV=local BUILD_ENV=local webpack-dev-server --config scripts/webpack.dev.conf.js"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts/webpack.dev.conf.js",
+    "prebuild": "rimraf ./dist",
+    "build": "lerna run build --stream"
   },
   "devDependencies": {
-    "lerna": "^4.0.0",
     "@babel/core": "^7.13.10",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-proposal-class-static-block": "^7.12.13",
@@ -34,31 +34,37 @@
     "@babel/plugin-proposal-throw-expressions": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
-    "@babel/runtime-corejs3": "^7.13.10",
-    "babel-loader": "^8.2.2",
-    "cross-env": "^7.0.3",
-    "happypack": "^5.0.1",
-    "html-webpack-plugin": "^5.3.1",
-    "progress-bar-webpack-plugin": "^2.1.0",
-    "rimraf": "^3.0.2",
-    "webpack": "^5.25.0",
-    "webpack-bundle-analyzer": "^4.4.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.7.3",
-    "typescript": "^4.2.3",
     "@babel/preset-typescript": "^7.13.0",
+    "@babel/runtime-corejs2": "^7.13.10",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.2.2",
+    "cache-loader": "^4.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "happypack": "^5.0.1",
+    "html-webpack-plugin": "^5.3.1",
+    "lerna": "^4.0.0",
     "prettier": "^2.2.1",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0"
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "rimraf": "^3.0.2",
+    "thread-loader": "^3.0.1",
+    "typescript": "^4.2.3",
+    "webpack": "^5.25.0",
+    "webpack-bundle-analyzer": "^4.4.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.13.14"
   }
 }

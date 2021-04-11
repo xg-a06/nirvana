@@ -1,4 +1,8 @@
 module.exports = {
+  babelrcRoots: [
+    // Keep the root as a root
+    '.',
+  ],
   presets: [
     [
       '@babel/preset-env',
@@ -6,16 +10,14 @@ module.exports = {
         targets: 'chrome>=49',
         useBuiltIns: 'usage',
         corejs: {
-          version: 3,
-          proposals: true, // 使用尚在“提议”阶段特性的 polyfill
+          version: 2,
         },
       },
     ],
     '@babel/preset-typescript',
-    
   ],
   plugins: [
-    ['@babel/plugin-transform-runtime', { corejs: 3 }],
+    ['@babel/plugin-transform-runtime', { corejs: 2 }],
     '@babel/plugin-proposal-class-static-block', // 必须在plugin-proposal-class-properties之前
     ['@babel/plugin-proposal-decorators', { legacy: true }], // 必须在plugin-proposal-class-properties之前
     ['@babel/plugin-proposal-private-property-in-object', { loose: true }],

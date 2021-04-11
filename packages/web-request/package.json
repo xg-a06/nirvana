@@ -21,7 +21,9 @@
     "url": "git+https://github.com/xg-a06/nirvana.git"
   },
   "scripts": {
-    "test": "echo \"run tests from root\""
+    "build:types": "tsc --emitDeclarationOnly --outDir ../../dist/web-request",
+    "build:js": "cross-env NODE_ENV=production  node ../../scripts/build.js",
+    "build": "yarn build:types && yarn build:js"
   },
   "bugs": {
     "url": "https://github.com/xg-a06/nirvana/issues"

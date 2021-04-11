@@ -1,18 +1,21 @@
 const { resolve } = require('./tools');
+
 const config = {
   buildDetail: false,
   devServer: {
-    contentBase: resolve('dist'),
-    port: 2233,
+    contentBase: 'asd',
+    port: 2344,
     open: true,
     hot: true,
     host: '0.0.0.0',
     index: 'index.html',
     overlay: {
       errors: true,
-      warnings: true,
     },
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [{ from: /^\/$/, to: '/examples/index.html' }],
+      disableDotRule: true,
+    },
     proxy: {
       '/xxx': {
         target: 'http://xxx.com',
@@ -23,16 +26,10 @@ const config = {
       },
     },
   },
-  local: {
+  development: {
     API_PATH: '/api',
   },
-  dev: {
-    API_PATH: '/api',
-  },
-  test: {
-    API_PATH: '/api',
-  },
-  prod: {
+  production: {
     API_PATH: '/api',
   },
 };
