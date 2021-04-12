@@ -27,7 +27,7 @@ const baseConfig = {
             },
           },
           'cache-loader',
-          'babel-loader?cacheDirectory=true',
+          'babel-loader?cacheDirectory=true&rootMode=upward',
         ],
         include: [resolve('packages'), resolve('examples')],
       },

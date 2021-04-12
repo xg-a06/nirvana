@@ -11,7 +11,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts/webpack.dev.conf.js",
     "prebuild": "rimraf ./dist",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:types": "tsc --emitDeclarationOnly ",
     "build": "lerna run build --stream"
   },
   "devDependencies": {
