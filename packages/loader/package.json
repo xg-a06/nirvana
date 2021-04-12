@@ -21,8 +21,9 @@
     "url": "git+https://github.com/xg-a06/nirvana.git"
   },
   "scripts": {
+    "build:types": "tsc -p tsconfig.build.json",
     "build:js": "cross-env NODE_ENV=production  node ../../scripts/build.js",
-    "build": "yarn build:js"
+    "build": "yarn build:js && yarn build:types"
   },
   "bugs": {
     "url": "https://github.com/xg-a06/nirvana/issues"
