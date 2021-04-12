@@ -1,9 +1,14 @@
 type Dict = { [key: string]: string };
 
+declare let process: {
+  env: {
+    ENTRIES: Dict;
+  };
+};
+
 const getLinks = () => {
   let linkStr = '';
-  const entries = process.env.ENTRIES as unknown;
-  Object.keys(entries as Dict).forEach((k: string) => {
+  Object.keys(process.env.ENTRIES).forEach((k: string) => {
     if (k === 'examples/index') {
       return;
     }
