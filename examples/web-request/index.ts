@@ -1,3 +1,3 @@
-import packages from '@nirvana/web-request';
+import { webRequest } from '@nirvana/web-request';
 
-packages(1, 4);
+console.log('packages', webRequest);
